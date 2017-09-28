@@ -1,0 +1,10 @@
+D:\EntityFramework.Helper\EntityFramework.Helper\bin\Debug\EntityFramework.Helper.dll.config
+D:\EntityFramework.Helper\EntityFramework.Helper\bin\Debug\EntityFramework.Helper.dll
+D:\EntityFramework.Helper\EntityFramework.Helper\bin\Debug\EntityFramework.Helper.pdb
+D:\EntityFramework.Helper\EntityFramework.Helper\bin\Debug\EntityFramework.dll
+D:\EntityFramework.Helper\EntityFramework.Helper\bin\Debug\EntityFramework.SqlServer.dll
+D:\EntityFramework.Helper\EntityFramework.Helper\bin\Debug\EntityFramework.xml
+D:\EntityFramework.Helper\EntityFramework.Helper\bin\Debug\EntityFramework.SqlServer.xml
+D:\EntityFramework.Helper\EntityFramework.Helper\obj\Debug\EntityFramework.Helper.csprojResolveAssemblyReference.cache
+D:\EntityFramework.Helper\EntityFramework.Helper\obj\Debug\EntityFramework.Helper.dll
+D:\EntityFramework.Helper\EntityFramework.Helper\obj\Debug\EntityFramework.Helper.pdb
