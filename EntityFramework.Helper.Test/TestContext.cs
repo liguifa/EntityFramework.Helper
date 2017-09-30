@@ -10,7 +10,7 @@ namespace EntityFramework.Helper.Test
 {
     public class TestContext : DbContext
     {
-        public TestContext():base("text")
+        public TestContext():base("test")
         {
             Database.SetInitializer(new MyContextInitializer());
         }
@@ -29,7 +29,7 @@ namespace EntityFramework.Helper.Test
             EFFunctionInitialize.Initialize(context, new StringFunctionInitialize());
             for (int i = 0; i < 100; i++)
             {
-                context.Set<User>().Add(new User() { Id = Guid.NewGuid(), Name = Guid.NewGuid().ToString() });
+                context.Set<User>().Add(new User() { Id = Guid.NewGuid(), Name = Guid.NewGuid().ToString(), Version = 1 });
             }
             context.SaveChanges();
             base.Seed(context);
@@ -41,6 +41,8 @@ namespace EntityFramework.Helper.Test
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
+        public int Version { get; set; }
     }
 
     public class UserConfiguration : EntityTypeConfiguration<User>

@@ -16,23 +16,30 @@ namespace EntityFramework.Helper.SQLFunctions
 
         public string GetFunctionBody()
         {
-            StringBuilder function = new StringBuilder();
-            function.AppendLine("declare @returnValue varchar(200)");
-            function.AppendLine("set @returnValue = 'Hello World'");
-            function.AppendLine("return @returnValue");
-            return function.ToString();
+            return $@"declare @whereSQL varchar(max);
+                      declare @returnValue varchar(max);
+                      if @where != ''
+                        set @whereSQL = ' where ' + @where
+                      else
+                        set @whereSQL = ''
+                      declare @sql varchar(max)
+                      set @sql = 'select @returnValue = stuff((select ''' + @separator + ''' + Name from ' + @table + @whereSQL + ' for xml path('''')),1,1,'''')'
+                      EXEC sp_executesql @sql
+                      return @returnValue";
         }
 
         public Dictionary<string, SqlDbType> GetParameters()
         {
             Dictionary<string, SqlDbType> dics = new Dictionary<string, SqlDbType>();
-            dics.Add("Id", SqlDbType.UniqueIdentifier);
+            dics.Add("table", SqlDbType.VarChar);
+            dics.Add("separator", SqlDbType.VarChar);
+            dics.Add("where", SqlDbType.VarChar);
             return dics;
         }
 
         public KeyValuePair<SqlDbType, int> GetReturn()
         {
-            return new KeyValuePair<SqlDbType, int>(SqlDbType.VarChar, 200);
+            return new KeyValuePair<SqlDbType, int>(SqlDbType.VarChar, 0);
         }
     }
 }

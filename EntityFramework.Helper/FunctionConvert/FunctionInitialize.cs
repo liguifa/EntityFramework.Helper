@@ -34,18 +34,29 @@ namespace EntityFramework.Helper
             ISQLFunction sqlFunction = Activator.CreateInstance(type) as ISQLFunction;
             string name = sqlFunction.GetFucntionName();
             Dictionary<string, SqlDbType> parameters = sqlFunction.GetParameters();
-            //KeyValuePair<SqlDbType, int> returnValue = sqlFunction.GetReturn();
+            KeyValuePair<SqlDbType, int> returnValue = sqlFunction.GetReturn();
             string sql = sqlFunction.GetFunctionBody();
             StringBuilder function = new StringBuilder();
             function.AppendLine($"Create function {name}");
             function.AppendLine("(");
             function.AppendLine(string.Join(",", parameters.Select(d => $"@{d.Key} {d.Value.ToString()}")));
             function.AppendLine(")");
+            function.AppendLine($"returns {this.GetSQLReturn(returnValue)}");
             function.AppendLine("as");
             function.AppendLine("begin");
             function.AppendLine(sql);
             function.AppendLine("end");
             return function.ToString();
+        }
+
+        private string GetSQLReturn(KeyValuePair<SqlDbType, int> returnValue)
+        {
+            if (returnValue.Key == SqlDbType.VarChar)
+            {
+                string size = returnValue.Value <= 0 ? "max" : returnValue.Value.ToString();
+                return $"{returnValue.Key.ToString()}({size})";
+            }
+            return returnValue.Key.ToString();
         }
     }
 }

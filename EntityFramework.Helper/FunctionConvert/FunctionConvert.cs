@@ -14,11 +14,11 @@ namespace EntityFramework.Helper
 {
     public abstract class FunctionConvert : IStoreModelConvention<EntityContainer>
     {
-        private string mNamespacep;
+        private string mNamespace;
 
         public FunctionConvert(string @namespace = "dbo")
         {
-            this.mNamespacep = @namespace;
+            this.mNamespace = @namespace;
         }
 
         public void Apply(EntityContainer item, DbModel model)
@@ -46,7 +46,7 @@ namespace EntityFramework.Helper
                         Parameters = functionParameters.ToArray(),
                         ReturnParameters = new List<FunctionParameter>() { returnParameter }.ToArray(),
                         IsComposable = true,
-                        Schema = this.mNamespacep,
+                        Schema = this.mNamespace,
                         IsBuiltIn = false
                     };
                     edmFunctions.Add(EdmFunction.Create(dbFunction.FunctionName, constant.Namespace, DataSpace.SSpace, functionPayload, null));

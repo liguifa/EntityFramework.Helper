@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace EntityFramework.Helper
 {
-    public static class String
+    public static class Json
     {
-        [DbFunction(constant.Namespace, constant.Join)]
-        [SQLFunction(typeof(StringJoinFunction))]
-        public static string Join(string table, string separator, string where)
+        [DbFunction(constant.Namespace,constant.GetValue)]
+        [SQLFunction(typeof(JsonGetValueHelper))]
+        public static string GetValue(string json,string name)
         {
             throw new NotImplementedException();
         }
