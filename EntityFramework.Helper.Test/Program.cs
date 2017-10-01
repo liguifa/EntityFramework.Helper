@@ -13,6 +13,7 @@ namespace EntityFramework.Helper.Test
             using (TestContext ctx = new TestContext())
             {
                 var strs = ctx.Set<User>().Select(d=>String.Join("Users","@","Version = 1")).ToList();
+                var ff = ctx.Set<UserFile>().ToList();
             }
         }
     }

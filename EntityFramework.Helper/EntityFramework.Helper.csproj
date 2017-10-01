@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attribute\DbViewAttribute.cs" />
     <Compile Include="Attribute\ReturnAttribute.cs" />
     <Compile Include="Attribute\ParameterAttribute.cs" />
     <Compile Include="Attribute\SQLFunctionAttribute.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="EntityFunctions\StringHelper.cs" />
     <Compile Include="SQLFunctions\ISQLFunction.cs" />
     <Compile Include="SQLFunctions\StringHelper.cs" />
+    <Compile Include="ViewConvert\ViewConvert.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

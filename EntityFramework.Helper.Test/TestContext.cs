@@ -19,6 +19,7 @@ namespace EntityFramework.Helper.Test
         {
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Conventions.Add(new StringFunctionConvert());
+            modelBuilder.Conventions.Add(new ViewConvert(typeof(UserFile)));
         } 
     }
 
@@ -51,5 +52,15 @@ namespace EntityFramework.Helper.Test
         {
 
         }
+    }
+
+    [DbView("UserFile")]
+    public class UserFile
+    {
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
+
+        public int Version { get; set; }
     }
 }
